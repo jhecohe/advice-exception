@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jhecohe.advice_exceptions.model.Product;
 import com.jhecohe.advice_exceptions.service.ProductService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +32,7 @@ public class ProductController {
     }
 
     @PostMapping()    
-    public ResponseEntity<Product> addProduct(@RequestBody Product product) throws Exception {
+    public ResponseEntity<Product> addProduct(@RequestBody @Valid Product product) throws Exception {
         return new ResponseEntity<>(productService.addProduct(product), HttpStatus.CREATED);
     }
 

@@ -7,6 +7,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.stereotype.Repository;
+
+import com.jhecohe.advice_exceptions.exception.ProductException;
 import com.jhecohe.advice_exceptions.model.Product;
 
 
@@ -33,7 +35,7 @@ public class ProductRepository {
     public Product getProduct(String id){
         Optional<Product> p = productList.stream().filter(pil -> pil.getId().equals(id)).findFirst();
 
-        return p.orElseThrow(RuntimeException::new);
+        return p.orElseThrow(ProductException::new);
     }
 
     public Product updateProduct(Product product) throws Exception{
